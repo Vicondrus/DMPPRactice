@@ -15,6 +15,5 @@ void loop() {
 }
 
 void sendData(){
-  
   Wire.write(centigrades);
 }

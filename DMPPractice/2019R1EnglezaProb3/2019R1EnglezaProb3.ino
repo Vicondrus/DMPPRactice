@@ -3,6 +3,8 @@
 #define m10 3
 #define m11 11
 
+int searchTime = 3000;
+
 void setup() {
   // put your setup code here, to run once:
   digitalWrite(m00, 0);
@@ -14,11 +16,11 @@ void setup() {
   pinMode(m10, OUTPUT);
   pinMode(m11, OUTPUT);
   pinMode(A0, INPUT);
+  euglena();
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
+  
 }
 
 void motorGo(int m1, int m2, int forward, int speed)
@@ -35,35 +37,37 @@ void motorGo(int m1, int m2, int forward, int speed)
   }
 }
 
-void rotateWith(int dir){
+void rotateWith(int dir) {
   //rotate with dir * 45 degrees (8 directions)
-  motorGo(m00,m01,1,128);
-  motorGo(m10,m11,0,128);
+  motorGo(m00, m01, 1, 128);
+  motorGo(m10, m11, 0, 128);
   delay(dir * 250);
-  motorGo(m00,m01,0,0);
-  motorGo(m10,m11,0,0);
+  motorGo(m00, m01, 0, 0);
+  motorGo(m10, m11, 0, 0);
 }
 
 int searchLight() {
-  int x = 0;
+  int startTime = millis();
   int maxim = -1;
-  int dir = -1;
-  for (int i = 0; i < 8; i++) {
-    
+  int x;
+  while (millis() - startTime < searchTime) {
+
     x = analogRead(A0); //read forward light
     if (maxim < x) {  //compare with maximum
       maxim = x;
-      dir = i;
     }
 
     rotateWith(1);  //rotate another 45 degrees
-    
+
   }
-  //reach innitial position
-  return dir;
+  return maxim;
 }
 
-void euglena(){
-  int dir = searchLight();
-  rotateWith(dir);
+void euglena() {
+  int maxim = searchLight();
+  int x = analogRead(A0);;
+  while ((maxim - x) > 5) {
+    rotateWith(1);
+    x = analogRead(A0);
+  }
 }
