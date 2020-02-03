@@ -27,6 +27,8 @@ void searchClosest(int pin){
   srv.attach(pin);
   int dist;
   for(int i=0;i<180;i++){
+    srv.write(i);
+    delay(20);
     dist = analogRead(A0);
     if(dist < closest){
       closest = dist;
