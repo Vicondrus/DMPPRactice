@@ -22,7 +22,7 @@ void readData(){
   Wire.write(1);
   Wire.endTransmission();
 
-  Wire.requestFrom(0x65,8);
+  Wire.requestFrom(0x65,1);
 
   while(!Wire.available()){}
   x = Wire.read();
@@ -33,7 +33,7 @@ void readData(){
   Wire.write(0);
   Wire.endTransmission();
 
-  Wire.requestFrom(0x65,8);
+  Wire.requestFrom(0x65,1);
 
   while(!Wire.available()){}
   x = Wire.read();
@@ -41,4 +41,3 @@ void readData(){
   data = data * 256 + x;
   
 }
-
