@@ -20,6 +20,7 @@ void loop() {
     digitalWrite(clk, HIGH);  //change clk
     delay(1); //wait
     digitalWrite(clk, LOW); //clk low for further changes
+    x = 1 - x;
   }
   model = 1 - model;  //change the model
   delay(1000 - 16); //wait for the rest of the second
