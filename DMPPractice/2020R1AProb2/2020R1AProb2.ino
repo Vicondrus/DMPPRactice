@@ -32,6 +32,7 @@ void loop() {
   if (countdown && timerValue == 0) {
     countdown = false;
     tone(A8, 100, 1000);
+    Timer1.detachInterrupt();
   }
   printNb(timerValue);
 }
