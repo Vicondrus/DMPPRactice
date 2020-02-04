@@ -21,6 +21,7 @@ void setup() {
   pinMode(A8, OUTPUT);
   for (int i = 0; i < 3; i++) {
     pinMode(anPins[i], OUTPUT);
+    digitalWrite(anPins[i],LOW);
   }
   DDRA = 0b11111111;
   attachInterrupt(digitalPinToInterrupt(minusBut), decr, FALLING);
@@ -43,7 +44,7 @@ void printNb(int nb) {
     int millisStart = millis();
     digitalWrite(anPins[i], HIGH);
     PORTA = cathodes[bcd[i]];
-    while (millis() - millisStart > litTime) {};
+    while (millis() - millisStart < litTime) {};
     digitalWrite(anPins[i], LOW);
   }
 }
