@@ -12,7 +12,7 @@ void loop() {
 
 int readTemperature(){
   int x = analogRead(A0);
-  float voltage = x * 0.049; //(5V / 1024 units)
+  float voltage = x * 0.0049; //(5V / 1024 units)
   float temp = (voltage - 2) / 0.01; //(voltage / (voltage per degrees))
   return (int) temp;
 }

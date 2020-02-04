@@ -27,8 +27,8 @@ int readTemperature(){
 void heatOn(){
   int temp = readTemperature();
   if(temp < 21){
-    temp = 1;
+    heat = 1;
   }else{
-    temp = 0;
+    heat = 0;
   }
 }
