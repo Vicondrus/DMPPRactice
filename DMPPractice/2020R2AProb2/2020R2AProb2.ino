@@ -5,7 +5,7 @@ int rowsPins[4] = {20, 21, 22, 23};
 int colsPins[4] = {24, 25, 26, 27};
 int number[4];
 int nbSize = 0;
-const int code[4]; //= {...};
+const char code[4]; //= {...};
 int debTime = 100;
 
 void setup() {
